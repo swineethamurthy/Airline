@@ -1,4 +1,4 @@
-package airline;
+package airline.Models;
 
 public class Place {
     private String placeName;
