@@ -3,6 +3,8 @@ package airline.Repositories;
 import airline.Models.Aeroplane;
 import airline.Models.FlightInformation;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +35,14 @@ public class FlightInformationRepository {
     public void populateFlightInformation()
     {
         int i= 0;
-        flightInformationList.add(new FlightInformation("Hyd","Mumbai","Vapasi-123"));
-        flightInformationList.add(new FlightInformation("Mumbai","Hyd","Vapasi-456"));
-        flightInformationList.add(new FlightInformation("Lkn","Mumbai","Vapasi-987"));
-        flightInformationList.add(new FlightInformation("Lkn","Mumbai","Vapasi-100"));
+        flightInformationList.add(new FlightInformation("Hyd","Mumbai","Vapasi-123",
+                LocalDate.of(2017, Month.SEPTEMBER, 14)));
+        flightInformationList.add(new FlightInformation("Mumbai","Hyd","Vapasi-456",
+                LocalDate.of(2017, Month.AUGUST, 21)));
+        flightInformationList.add(new FlightInformation("Lkn","Mumbai","Vapasi-987",
+                LocalDate.of(2017, Month.SEPTEMBER, 19)));
+        flightInformationList.add(new FlightInformation("Lkn","Mumbai","Vapasi-100",
+                LocalDate.of(2017, Month.SEPTEMBER, 4)));
         AeroplaneRepository aeroplaneRepository = new AeroplaneRepository();
         List<Aeroplane> aeroplanes =  aeroplaneRepository.getAeroplanes();
         for(FlightInformation flight : flightInformationList)

@@ -1,22 +1,36 @@
 package airline.Models;
 
 import java.lang.reflect.Field;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Optional;
 
 public class FlightSearchCriteria {
     private String source;
     private String destination;
     private int noOfPassengers;
-    private Date departureDate;
+    private String departureDate;
+    private Optional<LocalDate> departDate;
 
-    public Date getDepartureDate() {
+
+    public String getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(Date departureDate) {
+    public void setDepartureDate(String departureDate) {
+
+        if(departureDate.isEmpty() || departureDate == null) {
+            this.departDate = null;
+        }
+        else
+            this.departDate = Optional.of(LocalDate.parse(departureDate));
+
         this.departureDate = departureDate;
     }
 
+    public Optional<LocalDate> getParsedDate()
+    {
+        return this.departDate;
+    }
 
     public String getSource() {
         return source;

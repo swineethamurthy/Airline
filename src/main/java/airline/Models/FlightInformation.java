@@ -1,6 +1,6 @@
 package airline.Models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class FlightInformation {
     private String source;
@@ -8,17 +8,23 @@ public class FlightInformation {
     private String flightNumber;
     private Aeroplane aeroplane;
     private int noOfSeatsBooked;
-    private Date departureDate;
+    private LocalDate departureDate;
 
-    public Date getDepartureDate() {
-        return departureDate;
-    }
-
-    public void setDepartureDate(Date departureDate) {
+    public FlightInformation(String source, String destination, String flightName, LocalDate departureDate)
+    {
+        this.source = source;
+        this.destination = destination;
+        this.flightNumber = flightName;
         this.departureDate = departureDate;
     }
 
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
 
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
+    }
 
     public Aeroplane getAeroplane() {
         return aeroplane;
@@ -33,12 +39,7 @@ public class FlightInformation {
 
     }
 
-    public FlightInformation(String source, String destination, String flightName)
-    {
-        this.source = source;
-        this.destination = destination;
-        this.flightNumber = flightName;
-    }
+
 
     public String getSource()
     {
@@ -83,7 +84,12 @@ public class FlightInformation {
         return (aeroplane.getNoOfSeats() - this.noOfSeatsBooked);
     }
 
-
+    public boolean isEqualOrAfterDepartureDate(LocalDate departureDate)
+    {
+        if(departureDate.isAfter(LocalDate.now()) || departureDate.isEqual(LocalDate.now()))
+            return true;
+        return false;
+    }
 
 
 }

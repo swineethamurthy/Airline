@@ -1,7 +1,6 @@
 package airline.Repositories;
 
 import airline.Models.Aeroplane;
-import airline.Models.Place;
 
 import java.util.ArrayList;
 import java.util.List;

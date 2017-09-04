@@ -1,12 +1,13 @@
 package airline.Controllers;
 
-import airline.Models.FlightInformation;
 import airline.Models.FlightSearchCriteria;
 import airline.Services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created by rajashrk on 8/8/17.
@@ -34,9 +35,10 @@ public class FlightController {
     {
 
         model.addAttribute("cities",flightService.getPlaces());
-        model.addAttribute("flights",flightService.searchFlights(flightSearchCriteria.getSource(),
+        model.addAttribute("flights",flightService.searchFlightsWithDepartureDate(flightSearchCriteria.getSource(),
                 flightSearchCriteria.getDestination(),
-                flightSearchCriteria.getNoOfPassengers());
+                flightSearchCriteria.getNoOfPassengers(),
+                flightSearchCriteria.getParsedDate()));
         return "flightSearch";
     }
 
