@@ -1,16 +1,46 @@
 package airline.Models;
 
-import java.lang.reflect.Field;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.util.Optional;
 
 public class FlightSearchCriteria {
+    @NotEmpty(message = "Please enter your source.")
     private String source;
+    @NotEmpty(message = "Please enter your destination.")
     private String destination;
+    @Min(value=1)
     private int noOfPassengers;
     private String departureDate;
     private Optional<LocalDate> departDate;
+    private TravelClass.TravelType casttravelClass;
+    private String travelClass;
 
+    public Optional<LocalDate> getDepartDate() {
+        return departDate;
+    }
+
+    public void setDepartDate(Optional<LocalDate> departDate) {
+        this.departDate = departDate;
+    }
+
+    public String getTravelClass() {
+        return travelClass;
+    }
+
+    public void setTravelClass(String travelClass) {
+        this.travelClass = travelClass;
+        this.casttravelClass = getEnumByString(travelClass);
+    }
+
+    public TravelClass.TravelType getEnumByString(String code){
+        for(TravelClass.TravelType e : TravelClass.TravelType.values()){
+            if(code == e.displayName()) return e;
+        }
+        return null;
+    }
 
     public String getDepartureDate() {
         return departureDate;
@@ -30,6 +60,11 @@ public class FlightSearchCriteria {
     public Optional<LocalDate> getParsedDate()
     {
         return this.departDate;
+    }
+
+    public TravelClass.TravelType getParsedTravelClass()
+    {
+        return this.casttravelClass;
     }
 
     public String getSource() {
@@ -55,26 +90,5 @@ public class FlightSearchCriteria {
     public void setNoOfPassengers(int noOfPassengers) {
         this.noOfPassengers = noOfPassengers;
     }
-
-    public boolean isNull(Field field) {
-            try {
-                Object value = field.get(this);
-                if (value != null) {
-                    return false;
-                }
-            }
-            catch (IllegalArgumentException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            catch (IllegalAccessException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-        return true;
-
-    }
-
 
 }

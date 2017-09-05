@@ -1,17 +1,23 @@
 package airline.Models;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class FlightInformation {
     private String source;
     private String destination;
     private String flightNumber;
     private Aeroplane aeroplane;
-    private int noOfSeatsBooked;
     private LocalDate departureDate;
+    private int noOfSeatsBookedEconomy;
+    private int noOfSeatsBookedFirst;
+    private int noOfSeatsBookedBusiness;
 
-    public FlightInformation(String source, String destination, String flightName, LocalDate departureDate)
-    {
+    public FlightInformation() {
+
+    }
+
+    public FlightInformation(String source, String destination, String flightName, LocalDate departureDate) {
         this.source = source;
         this.destination = destination;
         this.flightNumber = flightName;
@@ -34,61 +40,53 @@ public class FlightInformation {
         this.aeroplane = aeroplane;
     }
 
-    public FlightInformation()
-    {
-
-    }
-
-
-
-    public String getSource()
-    {
+    public String getSource() {
         return this.source;
     }
 
-    public String getDestination()
-    {
+    public String getDestination() {
         return this.destination;
     }
 
-    public String getFlightNumber()
-    {
+    public String getFlightNumber() {
         return this.flightNumber;
     }
 
-    public void setSource(String source)
-    {
+    public void setSource(String source) {
         this.source = source;
     }
 
-    public void setDestination(String destination)
-    {
-         this.destination = destination;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
-    public void setFlightNumber(String flightNumber)
-    {
-         this.flightNumber = flightNumber;
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
     }
 
-    public int getNoOfSeatsBooked() {
-        return noOfSeatsBooked;
+    public int getTotalNoOfSeatsBooked() {
+        return noOfSeatsBookedEconomy + noOfSeatsBookedFirst + noOfSeatsBookedBusiness;
     }
 
-    public void setNoOfSeatsBooked(int noOfSeatsBooked) {
-        this.noOfSeatsBooked = noOfSeatsBooked;
-    }
+    public int getNumberOfSeatsAvailable(TravelClass.TravelType travelType) {
+        Optional<TravelClass> travelClass = aeroplane.getTravelClasses().stream().
+                filter(x -> x.getTravelClass().equals(travelType)).findFirst();
+        if(travelClass.isPresent())
+        {
+            switch(travelType)
+            {
+                case BUSINESS:
+                    return (travelClass.get().getNoOfSeats() - noOfSeatsBookedBusiness);
+                case FIRST:
+                    return (travelClass.get().getNoOfSeats() - noOfSeatsBookedFirst);
+                case ECONOMY:
+                    return (travelClass.get().getNoOfSeats() - noOfSeatsBookedEconomy);
+                default:
+                    return 0;
 
-    public int getNumberOfSeatsAvailable()
-    {
-        return (aeroplane.getNoOfSeats() - this.noOfSeatsBooked);
-    }
+            } }
 
-    public boolean isEqualOrAfterDepartureDate(LocalDate departureDate)
-    {
-        if(departureDate.isAfter(LocalDate.now()) || departureDate.isEqual(LocalDate.now()))
-            return true;
-        return false;
+        return 0;
     }
 
 

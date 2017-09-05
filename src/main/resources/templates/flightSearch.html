@@ -3,6 +3,11 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+    .error {
+        color: red; font-weight: bold;
+    }
+    </style>
 </head>
 <body>
 <form action="#" method="post" th:action="@{/searchFlights}" th:object="${flightSearchCriteria}">
@@ -11,29 +16,60 @@
             <tr>
                 <td>
                     <label>Source</label>
+                </td>
+                <td>
                     <select class="form-control" id="source" name="source" th:field="*{source}"  >
+                        <option value="">Select Source</option>
                         <option th:each="dropDownItem : ${cities}"
                                 th:value="${dropDownItem.placeName}"
                                 th:text="${dropDownItem.placeName}" />
+
                     </select>
                 </td>
+                 <td th:if="${#fields.hasErrors('source')}" th:errors="*{source}" class="error">Enter Source</td>
+            </tr>
+            <tr>
                 <td>
                     <label>Destination</label>
+                </td>
+                <td>
                     <select class="form-control" id="destination" name="destination" th:field="*{destination}"  >
+                        <option value="">Select Destination</option>
                         <option th:each="dropDownItem : ${cities}"
                                 th:value="${dropDownItem.placeName}"
                                 th:text="${dropDownItem.placeName}" />
                     </select>
                 </td>
+                <td th:if="${#fields.hasErrors('destination')}" th:errors="*{destination}" class="error">Enter Destination</td>
+            </tr>
+            <tr>
                 <td>
                     <label>Number of Passengers </label>
+                </td>
+                <td>
                     <input type="number" min="1" id="noOfPassengers" name="noOfPassengers" th:field="*{noOfPassengers}"/>
                 </td>
+            </tr>
+            <tr>
+                <td> <label>Departure Date</label></td>
                 <td>
                     <input id="departureDate" name="departureDate" type="date" th:field="*{departureDate}" />
                 </td>
-
+            </tr>
+            <tr>
+                <td> <label>Travel Class</label></td>
                 <td>
+                    <select class="form-control" id="travelClass" name="travelClass" th:field="*{travelClass}"  >
+                        <option value="">Select Class</option>
+                        <option th:each="dropDownItem : ${travelClasses}"
+                                th:value="${dropDownItem.displayName()}"
+                                th:text="${dropDownItem.displayName()}" />
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td >
                     <input type="submit" value="Submit"></input>
                 </td>
             </tr>
@@ -41,19 +77,18 @@
     <table>
         <tr>
             <tbody>
-            <tr>
-                <th th:text="Source"></th>
-                <th th:text="Destination"></th>
-                <th th:text="FlightNumber"></th>
-            </tr>
-            <tr th:each="flight: ${flights}">
-                <td th:text="${flight.source}"></td>
-                <td th:text="${flight.destination}"></td>
-                <td th:text="${flight.flightNumber}"></td>
-            </tr>
+                <tr>
+                    <th th:text="Source"></th>
+                    <th th:text="Destination"></th>
+                    <th th:text="FlightNumber"></th>
+                </tr>
+                <tr th:each="flight: ${flights}">
+                    <td th:text="${flight.source}"></td>
+                    <td th:text="${flight.destination}"></td>
+                    <td th:text="${flight.flightNumber}"></td>
+                </tr>
             </tbody>
         </tr>
-
     </table>
 
 </form>

@@ -1,17 +1,27 @@
 package airline.Models;
 
+import java.util.List;
+
 public class Aeroplane {
 
     private int aeroplaneId;
     private String modelNumber;
     private int noOfSeats;
+    private List<TravelClass> travelClasses;
 
-
-    public Aeroplane(int aeroplaneId, String modelNumber, int noOfSeats)
+    public Aeroplane(int aeroplaneId, String modelNumber, List<TravelClass> travelClasses)
     {
         this.aeroplaneId = aeroplaneId;
         this.modelNumber = modelNumber;
-        this.noOfSeats = noOfSeats;
+        this.travelClasses = travelClasses;
+    }
+
+    public List<TravelClass> getTravelClasses() {
+        return travelClasses;
+    }
+
+    public void setTravelClasses(List<TravelClass> travelClasses) {
+        this.travelClasses = travelClasses;
     }
 
     public String getModelNumber() {
@@ -30,8 +40,5 @@ public class Aeroplane {
         this.noOfSeats = noOfSeats;
     }
 
-
-
-
-
 }
+

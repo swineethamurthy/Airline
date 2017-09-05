@@ -42,14 +42,12 @@ public class FlightInformationRepository {
         flightInformationList.add(new FlightInformation("Lkn","Mumbai","Vapasi-987",
                 LocalDate.of(2017, Month.SEPTEMBER, 19)));
         flightInformationList.add(new FlightInformation("Lkn","Mumbai","Vapasi-100",
-                LocalDate.of(2017, Month.SEPTEMBER, 4)));
+                LocalDate.of(2017, Month.SEPTEMBER, 5)));
         AeroplaneRepository aeroplaneRepository = new AeroplaneRepository();
         List<Aeroplane> aeroplanes =  aeroplaneRepository.getAeroplanes();
         for(FlightInformation flight : flightInformationList)
         {
             flight.setAeroplane(aeroplanes.get(i));
-            flight.setNoOfSeatsBooked((i +1)*10);
-            System.out.println(flight.getNumberOfSeatsAvailable());
             i++;
         }
 
