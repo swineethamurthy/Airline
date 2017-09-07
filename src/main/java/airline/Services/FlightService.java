@@ -76,8 +76,29 @@ public class FlightService {
         return getFlights;
     }
 
+    public List<FlightInformation> searchResults(List<FlightInformation> searchedFlights,int noOfSeatsRequested) {
+        List<FlightInformation> searchResult;
+        if(searchedFlights.size()>0)
+        {
 
-}
+        }
+        else
+        {
+            searchResult=searchedFlights;
+        }
+        return searchResult;
+    }
+    public int calculateTotalPrice()
+    {
+
+    }
+    }
+
+
+
+
+
+
 
 
 

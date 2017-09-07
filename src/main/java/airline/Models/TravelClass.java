@@ -20,11 +20,13 @@ public class TravelClass {
 
     private TravelType travelClass;
     private int noOfSeats;
+    private int basePrice;
 
-    public TravelClass(TravelType traveltype, int noOfSeats)
+    public TravelClass(TravelType traveltype, int noOfSeats,int basePrice)
     {
         this.travelClass = traveltype;
         this.noOfSeats = noOfSeats;
+        this.basePrice = basePrice;
     }
 
     public TravelType getTravelClass() {
@@ -34,4 +36,16 @@ public class TravelClass {
     public int getNoOfSeats() {
         return noOfSeats;
     }
+    
+
+
+    public int getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(int basePrice) {
+        this.basePrice = basePrice;
+    }
+
+
 }

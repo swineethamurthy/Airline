@@ -44,7 +44,8 @@ public class FlightController {
             model.addAttribute("cities", flightService.getPlaces());
             model.addAttribute("travelClasses",flightService.getTravelClasses());
         }
-        else {
+        else
+        {
             model.addAttribute("cities", flightService.getPlaces());
             model.addAttribute("travelClasses",flightService.getTravelClasses());
             model.addAttribute("flights", flightService.searchFlights(flightSearchCriteria));

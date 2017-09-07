@@ -13,16 +13,54 @@ public class FlightInformation {
     private int noOfSeatsBookedFirst;
     private int noOfSeatsBookedBusiness;
 
-    public FlightInformation() {
+    private int basePriceEconomy;
+    private int basePriceFirst;
+    private int basePriceBusiness;
 
-    }
+    private int totalPrice;
 
-    public FlightInformation(String source, String destination, String flightName, LocalDate departureDate) {
+
+
+    public FlightInformation(String source, String destination, String flightName, LocalDate departureDate,int totalPrice) {
         this.source = source;
         this.destination = destination;
         this.flightNumber = flightName;
         this.departureDate = departureDate;
+        this.totalPrice=totalPrice;
     }
+
+    public int getBasePriceEconomy() {
+        return basePriceEconomy;
+    }
+
+    public void setBasePriceEconomy(int basePriceEconomy) {
+        this.basePriceEconomy = basePriceEconomy;
+    }
+
+    public int getBasePriceFirst() {
+        return basePriceFirst;
+    }
+
+    public void setBasePriceFirst(int basePriceFirst) {
+        this.basePriceFirst = basePriceFirst;
+    }
+
+    public int getBasePriceBusiness() {
+        return basePriceBusiness;
+    }
+
+    public void setBasePriceBusiness(int basePriceBusiness) {
+        this.basePriceBusiness = basePriceBusiness;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
 
     public LocalDate getDepartureDate() {
         return departureDate;
@@ -61,6 +99,27 @@ public class FlightInformation {
                     return (travelClass.get().getNoOfSeats() - noOfSeatsBookedFirst);
                 case ECONOMY:
                     return (travelClass.get().getNoOfSeats() - noOfSeatsBookedEconomy);
+                default:
+                    return 0;
+
+            } }
+
+        return 0;
+    }
+
+    public int getBasePrice(TravelClass.TravelType travelType) {
+        Optional<TravelClass> travelClass = aeroplane.getTravelClasses().stream().
+                filter(x -> x.getTravelClass().equals(travelType)).findFirst();
+        if(travelClass.isPresent())
+        {
+            switch(travelType)
+            {
+                case BUSINESS:
+                    return (travelClass.get().getBasePrice());
+                case FIRST:
+                    return (travelClass.get().getNoOfSeats());
+                case ECONOMY:
+                    return (travelClass.get().getNoOfSeats());
                 default:
                     return 0;
 
