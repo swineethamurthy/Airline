@@ -2,10 +2,12 @@ package airline.Repositories;
 
 import airline.Models.Aeroplane;
 import airline.Models.TravelClass;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class AeroplaneRepository {
     private List<Aeroplane> aeroplanes = new ArrayList<Aeroplane>();
 
