@@ -20,25 +20,6 @@ public class Aeroplane {
         return travelClasses;
     }
 
-    public void setTravelClasses(List<TravelClass> travelClasses) {
-        this.travelClasses = travelClasses;
-    }
-
-    public String getModelNumber() {
-        return modelNumber;
-    }
-
-    public void setModelNumber(String modelNumber) {
-        this.modelNumber = modelNumber;
-    }
-
-    public int getNoOfSeats() {
-        return noOfSeats;
-    }
-
-    public void setNoOfSeats(int noOfSeats) {
-        this.noOfSeats = noOfSeats;
-    }
 
 }
 
