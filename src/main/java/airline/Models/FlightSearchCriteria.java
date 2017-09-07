@@ -16,15 +16,8 @@ public class FlightSearchCriteria {
     private String departureDate;
     private Optional<LocalDate> departDate;
     private TravelClass.TravelType casttravelClass;
+    @NotEmpty(message = "Please enter your travel class.")
     private String travelClass;
-
-    public Optional<LocalDate> getDepartDate() {
-        return departDate;
-    }
-
-    public void setDepartDate(Optional<LocalDate> departDate) {
-        this.departDate = departDate;
-    }
 
     public String getTravelClass() {
         return travelClass;
@@ -33,13 +26,6 @@ public class FlightSearchCriteria {
     public void setTravelClass(String travelClass) {
         this.travelClass = travelClass;
         this.casttravelClass = getEnumByString(travelClass);
-    }
-
-    public TravelClass.TravelType getEnumByString(String code){
-        for(TravelClass.TravelType e : TravelClass.TravelType.values()){
-            if(code == e.displayName()) return e;
-        }
-        return null;
     }
 
     public String getDepartureDate() {
@@ -89,6 +75,15 @@ public class FlightSearchCriteria {
 
     public void setNoOfPassengers(int noOfPassengers) {
         this.noOfPassengers = noOfPassengers;
+    }
+
+    public TravelClass.TravelType getEnumByString(String code){
+        for(TravelClass.TravelType e : TravelClass.TravelType.values())
+        {
+            if(code.equals(e.displayName()))
+                return e;
+        }
+        return null;
     }
 
 }
