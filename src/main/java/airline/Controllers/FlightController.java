@@ -1,7 +1,6 @@
 package airline.Controllers;
 
 import airline.Models.FlightSearchCriteria;
-import airline.Models.TravelClass;
 import airline.Services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,17 +45,9 @@ public class FlightController {
             model.addAttribute("travelClasses",flightService.getTravelClasses());
         }
         else {
-            FlightSearchCriteria obj = new FlightSearchCriteria();
-            TravelClass.TravelType o = obj.getEnumByString("Economy");
-
             model.addAttribute("cities", flightService.getPlaces());
             model.addAttribute("travelClasses",flightService.getTravelClasses());
-            model.addAttribute("flights", flightService.searchFlightsWithDepartureDate(
-                    flightSearchCriteria.getSource(),
-                    flightSearchCriteria.getDestination(),
-                    flightSearchCriteria.getNoOfPassengers(),
-                    flightSearchCriteria.getParsedDate(),
-                    flightSearchCriteria.getEnumByString(flightSearchCriteria.getTravelClass())));
+            model.addAttribute("flights", flightService.searchFlights(flightSearchCriteria));
         }
         return "flightSearch";
     }
