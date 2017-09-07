@@ -31,16 +31,7 @@ public class TravelClass {
         return travelClass;
     }
 
-    public void setTravelClass(TravelType travelClass) {
-        this.travelClass = travelClass;
-    }
-
     public int getNoOfSeats() {
         return noOfSeats;
     }
-
-    public void setNoOfSeats(int noOfSeats) {
-        this.noOfSeats = noOfSeats;
-    }
-
 }
