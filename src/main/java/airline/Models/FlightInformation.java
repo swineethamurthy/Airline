@@ -28,14 +28,6 @@ public class FlightInformation {
         return departureDate;
     }
 
-    public void setDepartureDate(LocalDate departureDate) {
-        this.departureDate = departureDate;
-    }
-
-    public Aeroplane getAeroplane() {
-        return aeroplane;
-    }
-
     public void setAeroplane(Aeroplane aeroplane) {
         this.aeroplane = aeroplane;
     }
@@ -50,18 +42,6 @@ public class FlightInformation {
 
     public String getFlightNumber() {
         return this.flightNumber;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    public void setFlightNumber(String flightNumber) {
-        this.flightNumber = flightNumber;
     }
 
     public int getTotalNoOfSeatsBooked() {
