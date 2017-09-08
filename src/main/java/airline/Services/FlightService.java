@@ -20,9 +20,11 @@ import java.util.stream.Collectors;
 @Service
 public class FlightService {
 
-    @Autowired @Qualifier("FlightsRepository")
+    @Autowired
+    @Qualifier("FlightsRepository")
     private FlightInformationRepository flightsInformationRepository;
-    @Autowired @Qualifier("PlacesRepository")
+    @Autowired
+    @Qualifier("PlacesRepository")
     private PlaceRepository placesRepository;
 
     public FlightService() {
@@ -39,8 +41,7 @@ public class FlightService {
 
     }
 
-    public List<TravelClass.TravelType> getTravelClasses()
-    {
+    public List<TravelClass.TravelType> getTravelClasses() {
         return Arrays.asList(TravelClass.TravelType.values());
     }
 
@@ -52,47 +53,41 @@ public class FlightService {
                 .collect(Collectors.toList());
     }
 
-    public List<FlightInformation> searchFlights(FlightSearchCriteria searchCriteria)
-    {
+    public List<FlightInformation> searchFlights(FlightSearchCriteria searchCriteria) {
         List<FlightInformation> getFlights;
         List<FlightInformation> getFlightsWithSourceAndDestination = searchFlightsWithSourceAndDestination(searchCriteria.getSource(),
                 searchCriteria.getDestination());
-        if(Optional.ofNullable(searchCriteria.getParsedDate()).equals(Optional.empty()))
-        {
+        int noOfSeatsRequested = searchCriteria.getNoOfPassengers();
+        TravelClass.TravelType travelType = searchCriteria.getParsedTravelClass();
+        if (Optional.ofNullable(searchCriteria.getParsedDate()).equals(Optional.empty())) {
 
             getFlights = getFlightsWithSourceAndDestination.stream()
                     .filter(x -> x.getDepartureDate().isEqual(LocalDate.now()) || x.getDepartureDate().isAfter(LocalDate.now()))
-                    .filter(x -> x.getNumberOfSeatsAvailable(searchCriteria.getParsedTravelClass()) >= searchCriteria.getNoOfPassengers())
+                    .filter(x -> x.getNumberOfSeatsAvailable(travelType) >= noOfSeatsRequested)
                     .collect(Collectors.toList());
 
-        }
-        else
-        {
+        } else {
             getFlights = getFlightsWithSourceAndDestination.stream()
                     .filter(x -> x.getDepartureDate().isEqual(searchCriteria.getParsedDate().get()))
-                    .filter(x -> x.getNumberOfSeatsAvailable(searchCriteria.getParsedTravelClass()) >= searchCriteria.getNoOfPassengers())
+                    .filter(x -> x.getNumberOfSeatsAvailable(travelType) >= noOfSeatsRequested)
                     .collect(Collectors.toList());
         }
-        return getFlights;
-    }
-
-    public List<FlightInformation> searchResults(List<FlightInformation> searchedFlights,int noOfSeatsRequested) {
-        List<FlightInformation> searchResult;
-        if(searchedFlights.size()>0)
-        {
-
+        if (getFlights.size() > 0) {
+            return searchResults(getFlights, noOfSeatsRequested, travelType);
+        } else {
+            return getFlights;
         }
-        else
-        {
-            searchResult=searchedFlights;
-        }
-        return searchResult;
     }
-    public int calculateTotalPrice()
-    {
 
+    public List<FlightInformation> searchResults(List<FlightInformation> searchedFlights, int noOfSeatsRequested, TravelClass.TravelType travelType) {
+        return mapCalculatedTotalPrice(searchedFlights, noOfSeatsRequested, travelType);
     }
+
+    public List<FlightInformation> mapCalculatedTotalPrice(List<FlightInformation> searchedFlights, int noOfSeatsRequested,TravelClass.TravelType travelType) {
+        searchedFlights.forEach(flight -> flight.setTotalPrice(flight.getBasePrice(travelType)*noOfSeatsRequested));
+        return searchedFlights;
     }
+}
 
 
 

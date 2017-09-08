@@ -17,7 +17,7 @@ public class FlightInformation {
     private int basePriceFirst;
     private int basePriceBusiness;
 
-    private int totalPrice;
+    private int totalPrice=0;
 
 
 
@@ -117,9 +117,9 @@ public class FlightInformation {
                 case BUSINESS:
                     return (travelClass.get().getBasePrice());
                 case FIRST:
-                    return (travelClass.get().getNoOfSeats());
+                    return (travelClass.get().getBasePrice());
                 case ECONOMY:
-                    return (travelClass.get().getNoOfSeats());
+                    return (travelClass.get().getBasePrice());
                 default:
                     return 0;
 

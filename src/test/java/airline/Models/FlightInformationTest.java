@@ -14,7 +14,7 @@ public class FlightInformationTest {
 
     @Test
     public void getNumberOfSeatsAvailable() throws Exception {
-       // FlightInformation flightInfo = mockFlightInfoRepo.getMockFlightInformationList().get(0);
+      //  FlightInformation flightInfo = mockFlightInfoRepo.getMockFlightInformationList().get(0);
         //int availableSeats = flightInfo.getNumberOfSeatsAvailable(TravelClass.TravelType.ECONOMY);
         //assertEquals(195,availableSeats);
     }

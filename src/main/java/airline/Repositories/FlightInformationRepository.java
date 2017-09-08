@@ -39,13 +39,13 @@ public class FlightInformationRepository {
     {
         int i= 0;
         flightInformationList.add(new FlightInformation("HYD","BOM","Vapasi-123",
-                LocalDate.of(2017, Month.SEPTEMBER, 14)));
+                LocalDate.of(2017, Month.SEPTEMBER, 14),0));
         flightInformationList.add(new FlightInformation("BOM","HYD","Vapasi-456",
-                LocalDate.of(2017, Month.AUGUST, 21)));
+                LocalDate.of(2017, Month.AUGUST, 21),0));
         flightInformationList.add(new FlightInformation("LKN","BOM","Vapasi-987",
-                LocalDate.of(2017, Month.SEPTEMBER, 19)));
+                LocalDate.of(2017, Month.SEPTEMBER, 19),0));
         flightInformationList.add(new FlightInformation("LKN","BOM","Vapasi-100",
-                LocalDate.of(2017, Month.SEPTEMBER, 5)));
+                LocalDate.of(2017, Month.SEPTEMBER, 8),0));
         AeroplaneRepository aeroplaneRepository = new AeroplaneRepository();
         List<Aeroplane> aeroplanes =  aeroplaneRepository.getAeroplanes();
         for(FlightInformation flight : flightInformationList)

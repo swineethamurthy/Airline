@@ -34,7 +34,7 @@ public class AeroplaneRepository {
         List<TravelClass> travelClassList =  new ArrayList<TravelClass>();
         TravelClass classInfoForEconomy = new TravelClass(TravelClass.TravelType.ECONOMY, 195,6000);
         TravelClass classInfoForBusiness = new TravelClass(TravelClass.TravelType.BUSINESS, 35,13000);
-        TravelClass classInfoForFirst = new TravelClass(TravelClass.TravelType.FIRST, 8,6000);
+        TravelClass classInfoForFirst = new TravelClass(TravelClass.TravelType.FIRST, 8,24000);
         travelClassList.add(classInfoForEconomy);
         travelClassList.add(classInfoForBusiness);
         travelClassList.add(classInfoForFirst);
