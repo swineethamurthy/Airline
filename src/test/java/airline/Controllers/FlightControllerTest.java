@@ -45,8 +45,8 @@ public class FlightControllerTest {
     @Test
     public void searchFlights() throws Exception {
 
-       // Mockito.when(flightService.searchFlights(Mockito.anyObject())).
-            //    thenReturn(mockFlightInfoRepo.getMockFlightInformationList());
+       Mockito.when(flightService.searchFlights(Mockito.anyObject())).
+           thenReturn(mockFlightInfoRepo.getMockFlightInformationList());
         mockMVC.perform(MockMvcRequestBuilders.post("/searchFlights").
                 accept(MediaType.TEXT_HTML)).andExpect(view().name("flightSearch"));
 

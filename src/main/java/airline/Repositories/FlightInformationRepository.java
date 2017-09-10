@@ -45,7 +45,7 @@ public class FlightInformationRepository {
         flightInformationList.add(new FlightInformation("LKN","BOM","Vapasi-987",
                 LocalDate.of(2017, Month.SEPTEMBER, 19),0));
         flightInformationList.add(new FlightInformation("LKN","BOM","Vapasi-100",
-                LocalDate.of(2017, Month.SEPTEMBER, 8),0));
+                LocalDate.of(2017, Month.SEPTEMBER, 10),0));
         AeroplaneRepository aeroplaneRepository = new AeroplaneRepository();
         List<Aeroplane> aeroplanes =  aeroplaneRepository.getAeroplanes();
         for(FlightInformation flight : flightInformationList)

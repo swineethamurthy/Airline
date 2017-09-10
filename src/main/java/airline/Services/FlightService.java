@@ -31,6 +31,7 @@ public class FlightService {
 
     }
 
+    private PricingService pricingService = new PricingService();
 
     public List<FlightInformation> getFlightInformation() {
         return flightsInformationRepository.getFlightInformation();
@@ -73,20 +74,13 @@ public class FlightService {
                     .collect(Collectors.toList());
         }
         if (getFlights.size() > 0) {
-            return searchResults(getFlights, noOfSeatsRequested, travelType);
+            return pricingService.mapCalculatedTotalPrice(getFlights, noOfSeatsRequested, travelType);
         } else {
             return getFlights;
         }
     }
 
-    public List<FlightInformation> searchResults(List<FlightInformation> searchedFlights, int noOfSeatsRequested, TravelClass.TravelType travelType) {
-        return mapCalculatedTotalPrice(searchedFlights, noOfSeatsRequested, travelType);
-    }
 
-    public List<FlightInformation> mapCalculatedTotalPrice(List<FlightInformation> searchedFlights, int noOfSeatsRequested,TravelClass.TravelType travelType) {
-        searchedFlights.forEach(flight -> flight.setTotalPrice(flight.getBasePrice(travelType)*noOfSeatsRequested));
-        return searchedFlights;
-    }
 }
 
 

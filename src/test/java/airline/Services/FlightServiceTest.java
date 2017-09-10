@@ -35,13 +35,7 @@ public class FlightServiceTest {
     private PlaceRepository placeRepository;
 
     private List<FlightInformation> listOfMockFlights = mockFlightInfoRepo.getMockFlightInformationList();
-
-    @Test
-    public void ReadData()
-    {
-        MockSearchCriteriaRepository obj = new MockSearchCriteriaRepository();
-        obj.readTestData();
-    }
+    MockSearchCriteriaRepository obj= new MockSearchCriteriaRepository();
 
     @Test
     public void testSearchFlightsWithSourceAndDestination() throws Exception {
@@ -52,34 +46,18 @@ public class FlightServiceTest {
     }
 
     @Test
-    public void testSearchFlights() throws Exception {
-
-        Mockito.when(flightInfoRepo.getFlightInformation()).thenReturn(listOfMockFlights);
-        FlightSearchCriteria searchCriteria=new FlightSearchCriteria();
-        searchCriteria.setSource("LKN");
-        searchCriteria.setDestination("BOM");
-        searchCriteria.setNoOfPassengers(2);
-        searchCriteria.setDepartureDate("2017-09-08");
-        searchCriteria.setTravelClass("ECONOMY");
-
-        List<FlightInformation> flightInfoList = flightService.searchFlights(searchCriteria);
-        assertEquals(0, flightInfoList.size());
-    }
-
-
-    /*@Test
     public void testSearchFlightsWithSourceAndDestinationWithNullDepartureDateAndDefaultNumberOfPassengers() throws Exception {
 
         Mockito.when(flightInfoRepo.getFlightInformation()).thenReturn(listOfMockFlights);
-        List<FlightInformation> flightInfoList = flightService.searchFlights("LKN", "BOM",1, null, TravelClass.TravelType.ECONOMY);
-        assertEquals(1, flightInfoList.size());
+        List<FlightInformation> flighInfoList=flightService.searchFlights(obj.readTestData("testSearchFlightsWithSourceAndDestinationWithNullDepartureDateAndDefaultNumberOfPassengers"));
+        assertEquals(1, flighInfoList.size());
     }
 
     @Test
     public void testSearchFlightsWithSourceAndDestinationWithNullDepartureDateAndNumberOfPassengers() throws Exception {
         Mockito.when(flightInfoRepo.getFlightInformation()).thenReturn(listOfMockFlights);
-        List<FlightInformation> flightInfoList = flightService.searchFlights("LKN", "BOM",28, null, TravelClass.TravelType.ECONOMY);
-        assertEquals(0, flightInfoList.size());
+        List<FlightInformation> flighInfoList=flightService.searchFlights(obj.readTestData("testSearchFlightsWithSourceAndDestinationWithNullDepartureDateAndNumberOfPassengers"));
+        assertEquals(0, flighInfoList.size());
     }
 
 
@@ -87,47 +65,45 @@ public class FlightServiceTest {
     public void testSearchFlightsWithSourceAndDestinationWithDepartureDateAndNumberOfPassengers() throws Exception {
 
         Mockito.when(flightInfoRepo.getFlightInformation()).thenReturn(listOfMockFlights);
-        List<FlightInformation> flightInfoList = flightService.searchFlights("LKN", "BOM",28, Optional.of(LocalDate.now()), TravelClass.TravelType.ECONOMY);
-        assertEquals(0, flightInfoList.size());
+        List<FlightInformation> flighInfoList=flightService.searchFlights(obj.readTestData("testSearchFlightsWithSourceAndDestinationWithDepartureDateAndNumberOfPassengers"));
+        assertEquals(0, flighInfoList.size());
     }
 
     @Test
     public void testSearchFlightsWithSourceAndDestinationWithDepartureDateAndDefaultNumberOfPassengers() throws Exception {
 
         Mockito.when(flightInfoRepo.getFlightInformation()).thenReturn(listOfMockFlights);
-        List<FlightInformation> flightInfoList = flightService.searchFlights("LKN", "BOM",1, Optional.of(LocalDate.now()), TravelClass.TravelType.ECONOMY);
-        assertEquals(0, flightInfoList.size());
+        List<FlightInformation> flighInfoList=flightService.searchFlights(obj.readTestData("testSearchFlightsWithSourceAndDestinationWithDepartureDateAndDefaultNumberOfPassengers"));
+        assertEquals(0, flighInfoList.size());
     }
 
     @Test
     public void testSearchFlightsWithSourceAndDestinationWithDepartureDateAndNumberOfPassengersBusinessClass() throws Exception {
 
         Mockito.when(flightInfoRepo.getFlightInformation()).thenReturn(listOfMockFlights);
-        List<FlightInformation> flightInfoList = flightService.searchFlights("LKN", "BOM",24, Optional.of(LocalDate.now()), TravelClass.TravelType.ECONOMY);
-        assertEquals(0, flightInfoList.size());
+        List<FlightInformation> flighInfoList=flightService.searchFlights(obj.readTestData("testSearchFlightsWithSourceAndDestinationWithDepartureDateAndNumberOfPassengersBusinessClass"));
+        assertEquals(0, flighInfoList.size());
     }
 
     @Test
     public void testSearchFlightsWithSourceAndDestinationWithDepartureDateAndDefaultNumberOfPassengersBusinessClass() throws Exception {
 
         Mockito.when(flightInfoRepo.getFlightInformation()).thenReturn(listOfMockFlights);
-        List<FlightInformation> flightInfoList = flightService.searchFlights("LKN", "BOM",1, Optional.of(LocalDate.now()), TravelClass.TravelType.BUSINESS);
-        assertEquals(0, flightInfoList.size());
+        List<FlightInformation> flighInfoList=flightService.searchFlights(obj.readTestData("testSearchFlightsWithSourceAndDestinationWithDepartureDateAndDefaultNumberOfPassengersBusinessClass"));
+        assertEquals(0, flighInfoList.size());
     }
 
     @Test
     public void testSearchFlightsWithSourceAndDestinationWithNullDepartureDateAndNumberOfPassengersBusinessClass() throws Exception {
 
         Mockito.when(flightInfoRepo.getFlightInformation()).thenReturn(listOfMockFlights);
-        List<FlightInformation> flightInfoList = flightService.searchFlights("LKN", "BOM",8, null, TravelClass.TravelType.BUSINESS);
-        assertEquals(1, flightInfoList.size());
+        List<FlightInformation> flighInfoList=flightService.searchFlights(obj.readTestData("testSearchFlightsWithSourceAndDestinationWithNullDepartureDateAndNumberOfPassengersBusinessClass"));
+        assertEquals(1, flighInfoList.size());
     }
 
-    @Test
-    public void searchFlightsWithDepartureDate() throws Exception {
-    }*/
 
-    /* Mock Repository */
+
+
 
 
 

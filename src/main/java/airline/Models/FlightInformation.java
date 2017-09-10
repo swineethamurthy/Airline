@@ -13,15 +13,11 @@ public class FlightInformation {
     private int noOfSeatsBookedFirst;
     private int noOfSeatsBookedBusiness;
 
-    private int basePriceEconomy;
-    private int basePriceFirst;
-    private int basePriceBusiness;
-
-    private int totalPrice=0;
+    private double totalPrice=0;
 
 
 
-    public FlightInformation(String source, String destination, String flightName, LocalDate departureDate,int totalPrice) {
+    public FlightInformation(String source, String destination, String flightName, LocalDate departureDate,double totalPrice) {
         this.source = source;
         this.destination = destination;
         this.flightNumber = flightName;
@@ -29,35 +25,11 @@ public class FlightInformation {
         this.totalPrice=totalPrice;
     }
 
-    public int getBasePriceEconomy() {
-        return basePriceEconomy;
-    }
-
-    public void setBasePriceEconomy(int basePriceEconomy) {
-        this.basePriceEconomy = basePriceEconomy;
-    }
-
-    public int getBasePriceFirst() {
-        return basePriceFirst;
-    }
-
-    public void setBasePriceFirst(int basePriceFirst) {
-        this.basePriceFirst = basePriceFirst;
-    }
-
-    public int getBasePriceBusiness() {
-        return basePriceBusiness;
-    }
-
-    public void setBasePriceBusiness(int basePriceBusiness) {
-        this.basePriceBusiness = basePriceBusiness;
-    }
-
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -82,9 +54,7 @@ public class FlightInformation {
         return this.flightNumber;
     }
 
-    public int getTotalNoOfSeatsBooked() {
-        return noOfSeatsBookedEconomy + noOfSeatsBookedFirst + noOfSeatsBookedBusiness;
-    }
+
 
     public int getNumberOfSeatsAvailable(TravelClass.TravelType travelType) {
         Optional<TravelClass> travelClass = aeroplane.getTravelClasses().stream().
@@ -107,7 +77,7 @@ public class FlightInformation {
         return 0;
     }
 
-    public int getBasePrice(TravelClass.TravelType travelType) {
+    public double getBasePrice(TravelClass.TravelType travelType) {
         Optional<TravelClass> travelClass = aeroplane.getTravelClasses().stream().
                 filter(x -> x.getTravelClass().equals(travelType)).findFirst();
         if(travelClass.isPresent())
